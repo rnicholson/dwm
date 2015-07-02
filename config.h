@@ -18,8 +18,21 @@ static const unsigned int snap      = 32;       /* snap pixel */
 static const Bool showbar           = True;     /* False means no bar */
 static const Bool topbar            = True;     /* False means bottom bar */
 
+#define NUMCOLORS         4
+static const char colors[NUMCOLORS][3][8] = {
+  // border   foreground background
+  { "#000033", "#dddddd", "#000033" },  // normal
+  { "#000088", "#ffffff", "#000088" },  // selected
+  { "#ff0000", "#000000", "#ffff00" },  // urgent/warning  (black on yellow)
+  { "#ff0000", "#ffffff", "#ff0000" },  // error (white on red)
+  // add more here
+};
+
 /* tagging */
-static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+#define MAX_TAGNAME_LEN 14		/* excludes TAG_PREPEND */
+#define TAG_PREPEND "%1i:"		/* formatted as 2 chars */
+#define MAX_TAGLEN 16			/* altogether */
+static char tags[][MAX_TAGLEN] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -36,11 +49,15 @@ static const float mfact      = 0.55; /* factor of master area size [0.05..0.95]
 static const int nmaster      = 1;    /* number of clients in master area */
 static const Bool resizehints = True; /* True means respect size hints in tiled resizals */
 
+#include "bstack.c"
+#include "bstackhoriz.c"
 static const Layout layouts[] = {
 	/* symbol     arrange function */
 	{ "[]=",      tile },    /* first entry is default */
 	{ "><>",      NULL },    /* no layout function means floating behavior */
 	{ "[M]",      monocle },
+	{ "TTT",      bstack },
+	{ "===",      bstackhoriz },
 };
 
 /* key definitions */
@@ -74,6 +91,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_Tab,    view,           {0} },
 	{ MODKEY|ShiftMask,             XK_c,      killclient,     {0} },
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
+	{ MODKEY|ShiftMask,             XK_b,      setlayout,      {.v = &layouts[3]} },
 	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
 	{ MODKEY,                       XK_space,  setlayout,      {0} },
@@ -84,6 +102,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
+	{ MODKEY,                       XK_n,      nametag,        {0} },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
