@@ -2,11 +2,9 @@
 
 /* appearance */
 static const char *fonts[] = {
-    "Sans:size=10.5",
-    "VL Gothic:size=10.5",
-    "WenQuanYi Micro Hei:size=10.5",
+  "terminus:size=10"
 };
-static const char dmenufont[] = "-*-terminus-medium-r-*-*-16-*-*-*-*-*-*-*";
+static const char dmenufont[] = "-*-terminus-*-r-*-*-12-*-*-*-*-*-*-*";
 static const char normbordercolor[] = "#444444";
 static const char normbgcolor[]     = "#222222";
 static const char normfgcolor[]     = "#bbbbbb";
@@ -21,7 +19,7 @@ static const Bool topbar            = True;     /* False means bottom bar */
 #define NUMCOLORS         4
 static const char colors[NUMCOLORS][3][8] = {
   // border   foreground background
-  { "#000000", "#333333", "#000000" },  // normal
+  { "#000000", "#eeeeee", "#000000" },  // normal
   { "#ff8300", "#ff8300", "#000000" },  // selected
   { "#ff0000", "#000000", "#ffff00" },  // urgent/warning  (black on yellow)
   { "#ff0000", "#ffffff", "#ff0000" },  // error (white on red)
