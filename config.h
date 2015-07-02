@@ -10,9 +10,9 @@ static const char dmenufont[] = "-*-terminus-medium-r-*-*-16-*-*-*-*-*-*-*";
 static const char normbordercolor[] = "#444444";
 static const char normbgcolor[]     = "#222222";
 static const char normfgcolor[]     = "#bbbbbb";
-static const char selbordercolor[]  = "#005577";
-static const char selbgcolor[]      = "#005577";
-static const char selfgcolor[]      = "#eeeeee";
+static const char selbordercolor[]  = "#ff8300";
+static const char selbgcolor[]      = "#ff8300";
+static const char selfgcolor[]      = "#222222";
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const Bool showbar           = True;     /* False means no bar */
@@ -21,8 +21,8 @@ static const Bool topbar            = True;     /* False means bottom bar */
 #define NUMCOLORS         4
 static const char colors[NUMCOLORS][3][8] = {
   // border   foreground background
-  { "#000033", "#dddddd", "#000033" },  // normal
-  { "#000088", "#ffffff", "#000088" },  // selected
+  { "#000000", "#333333", "#000000" },  // normal
+  { "#ff8300", "#ff8300", "#000000" },  // selected
   { "#ff0000", "#000000", "#ffff00" },  // urgent/warning  (black on yellow)
   { "#ff0000", "#ffffff", "#ff0000" },  // error (white on red)
   // add more here
